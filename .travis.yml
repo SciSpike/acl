@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '10'
+before_deploy:
+- npm run make-distribution
+- cd $TRAVIS_BUILD_DIR/lib/main
+deploy:
+  provider: npm
+  email: npm@scispike.com
+  api_key:
+    secure: 4SClJey8sKw0heARWoIgww/Wfk7Xa1vfLJBAiY3Q65j7WHZdvmTL/VXAWRKZXXKlkxwazAEbJsgY0EuXEtHUH6vJUDQkLmb5goDc3jm7IndGSfySySI8OoPDJtg12m144fIPqk50HKeumwXjT7AhBCF6U841yk5w4uYdu4yHUqaFHK1h2OzMz2Xeexke6SCDnHn9WRma1wnmE2i3AOynHAU9EtB2eDStNijb6AN1cCIoIMu0mIsR/U2x9wjgs6AMLJV2lh66WHsFFrwy2z5ZWzTTOPRQVpULsZXMkr9CFGMj5kmmevGBI+v3FW9Pni2qrbIsA81qwoDI8OLteBz8ff8kxeCqVtBCjlej0dmrpYdvpBfDKmVReWx5aMvxU9exJd9LLDWgYJxUOwW9bd1WFSQVjgptQERFgSPoH65FONE5J/ONQPg7oamh2KQ1L5l+sQfSpJiJbWrXZ9xqUY5cPLwdDfTghcbdm359yFBgvnhFWA7defYn5jDPSvbErhB8VyYmzXGllf+ozcqceu7MPjPYEqjhasXTjeIawt2UJJ+aClI6M3m5sUVn9I6RKgJ9e+QME+9q3SmFaF5sCsTQqYzo5vDhwJ9ythOLKSqmFsttLibzCI8pIvt6wnBi2yxlz3sr9GjgyDF0PuoCmCGjRYO4im1sJQkG7j1ydVUKBIU=
+  on:
+    tags: true
+    repo: SciSpike/acl
