@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "7.4.3",
-    "@scispike/nodejs-support": "1.2.0-rc.0",
+    "@scispike/nodejs-support": "1.2.0-rc.1",
     "enumify": "1.0.4"
   },
   "devDependencies": {
