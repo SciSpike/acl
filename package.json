@@ -1,0 +1,110 @@
+{
+  "name": "@scispike/acl",
+  "version": "1.0.0-pre.0",
+  "description": "Security via access control list (ACL)",
+  "homepage": "https://github.com/SciSpike/acl#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SciSpike/acl.git"
+  },
+  "keywords": [
+    "security",
+    "access control",
+    "authorization",
+    "rbac",
+    "application-level security"
+  ],
+  "engines": {
+    "node": ">=10.12.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "run-s test",
+    "transpile": "run-s transpile-main transpile-test",
+    "transpile-main": "babel --delete-dir-on-start --verbose --out-dir lib/main --copy-files src/main",
+    "transpile-test": "babel --delete-dir-on-start --verbose --out-dir lib/test --copy-files src/test",
+    "unit-integration": "nyc --check-coverage --statements 93 --branches 84 --functions 88 --lines 95 -x 'lib/test' --exclude-after-remap false mocha 'lib/test/unit/**/*.spec.js' 'lib/test/integration/**/*.spec.js'",
+    "postunit-integration": "run-s report",
+    "integration": "nyc --check-coverage -x 'lib/test' --exclude-after-remap false mocha 'lib/test/integration/**/*.spec.js'",
+    "postintegration": "run-s report",
+    "i": "mocha 'src/test/integration/**/*.spec.js' | npx bunyan",
+    "unit": "nyc --check-coverage -x 'lib/test' --exclude-after-remap false mocha 'lib/test/unit/**/*.spec.js'",
+    "postunit": "run-s report",
+    "u": "mocha 'src/test/unit/**/*.spec.js' | npx bunyan",
+    "test": "run-s transpile unit-integration lint",
+    "report": "nyc report --reporter=html",
+    "cov": "open coverage/index.html",
+    "lint": "standard --verbose 'src/**/*.js'",
+    "format": "standard --fix 'src/**/*.js'",
+    "make-distribution": "run-s transpile finalize-distribution",
+    "finalize-distribution": "copyfiles --verbose package.json package-lock.json README.md lib/main",
+    "prelink": "run-s make-distribution",
+    "link": "cd lib/main && npm link; cd ../..",
+    "unlink": "cd lib/main && npm unlink; cd ../.."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.4.3",
+    "@scispike/nodejs-support": "1.2.0-rc.0",
+    "enumify": "1.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.4.3",
+    "@babel/core": "7.4.3",
+    "@babel/plugin-proposal-class-properties": "7.4.0",
+    "@babel/plugin-proposal-decorators": "7.4.0",
+    "@babel/plugin-proposal-optional-chaining": "7.2.0",
+    "@babel/plugin-proposal-throw-expressions": "7.2.0",
+    "@babel/preset-env": "7.4.3",
+    "@babel/register": "7.4.0",
+    "acorn": "6.1.1",
+    "babel-eslint": "10.0.1",
+    "chai": "4.2.0",
+    "config-cev-generator": "0.1.6",
+    "copyfiles": "2.1.0",
+    "dirty-chai": "2.0.1",
+    "mocha": "6.1.3",
+    "npm-run-all": "4.1.5",
+    "nyc": "13.3.0",
+    "standard": "12.0.1"
+  },
+  "babel": {
+    "sourceMaps": "inline",
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-optional-chaining",
+        {
+          "loose": false
+        }
+      ],
+      [
+        "@babel/plugin-proposal-throw-expressions"
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "mocha": {
+    "colors": true,
+    "require": "@babel/register"
+  }
+}
