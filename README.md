@@ -1,5 +1,11 @@
 # access-control
 
+> DEPRECATION NOTE:
+> Since the time this package was created, SciSpike has been acquired by [Northscaler](https://www.northscaler.com).
+> There will be no further development on this module.
+> Instead, development will continue at [@northscaler/acl](https://www.npmjs.com/package/@northscaler/acl).
+> You can see all of Northscaler's public Node.js modules at https://www.npmjs.com/search?q=%40northscaler.
+
 This library allows you to maintain security information in access control lists (ACLs).
 There are four elements required in the determination of access:
 * __principal__:  The actor, user or system attempting to perform some action on a securable.
