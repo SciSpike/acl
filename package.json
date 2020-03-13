@@ -59,7 +59,7 @@
     "@babel/plugin-proposal-throw-expressions": "7.2.0",
     "@babel/preset-env": "7.7.1",
     "@babel/register": "7.7.0",
-    "acorn": "7.1.0",
+    "acorn": "7.1.1",
     "babel-eslint": "10.0.3",
     "chai": "4.2.0",
     "config-cev-generator": "0.1.6",
